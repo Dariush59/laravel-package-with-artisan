@@ -16,14 +16,13 @@ class ExpenseServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        require __DIR__ . '/../routes/web.php';
-        require __DIR__ . '/../routes/api.php';
 
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'phoenix');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'phoenix');
+         $this->loadViewsFrom(__DIR__.'/../resources/views', 'expense');
 
-//        $this->loadMigrationsFrom(database_path('migrations/expense'));
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
+        $this->loadMigrationsFrom(database_path('migrations/expense'));
+        $this->loadRoutesFrom( __DIR__ . '/../routes/web.php');
+        $this->loadRoutesFrom( __DIR__ . '/../routes/web.php');
 
         $this->app['router']->middleware('admin', Admin::class);
 
