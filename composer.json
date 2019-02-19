@@ -1,0 +1,42 @@
+{
+    "name": "phoenix/expenses",
+    "description": "Phoenix Expense package",
+    "license": "Digi-X",
+    "authors": [
+        {
+            "name": "Digi-X Engineering",
+            "email": "techies@digi-x.my"            
+        }
+    ],    
+    "keywords": ["Phoenix", "Expenses"],
+    "require": {
+        "illuminate/support": "~5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~7.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3.0",
+        "sempro/phpunit-pretty-print": "^1.0",
+        "matthewbdaly/artisan-standalone": "^0.0.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Phoenix\\Expenses\\": "src/"
+        },
+        "classmap": [
+            "database"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Phoenix\\Expenses\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Phoenix\\Expenses\\ExpenseServiceProvider"
+            ]
+        }
+    }
+}
