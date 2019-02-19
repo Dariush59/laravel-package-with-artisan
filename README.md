@@ -1,2 +1,4 @@
-# laravel-package-with-artisan
-To have artisan in laravel packages
+        "expense-local": {
+            "type": "path",
+            "url": "../phoenix-expenses-pckg"
+        }

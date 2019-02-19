@@ -7,11 +7,10 @@
  */
 
 
-Route::group(['namespace' => 'Phoenix\Leave\Http\Controllers\Admin', 'as' => 'admin.','prefix' => 'admin'], function () {
+Route::group(['namespace' => 'Phoenix\Expenses\Http\Controllers\Admin', 'as' => 'admin.','prefix' => 'admin'], function () {
     /*
     *  Leave
     */
-    Route::resource('leaves', 'LeaveController')->middleware(['web', 'auth']);
 
 
 });

@@ -3,7 +3,9 @@
 namespace Phoenix\Expenses;
 
 use Illuminate\Support\ServiceProvider;
+use Phoenix\Expenses\Console\Commands\ExpenseDependencies;
 use Phoenix\Expenses\Http\Middleware\Admin;
+use Phoenix\Expenses\Models\ExpensePayOutType;
 
 class ExpenseServiceProvider extends ServiceProvider
 {
@@ -19,15 +21,18 @@ class ExpenseServiceProvider extends ServiceProvider
 
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'phoenix');
         // $this->loadViewsFrom(__DIR__.'/../resources/views', 'phoenix');
-        $this->loadMigrationsFrom(database_path('migrations/expense'));
+
+//        $this->loadMigrationsFrom(database_path('migrations/expense'));
         // $this->loadRoutesFrom(__DIR__.'/routes.php');
 
         $this->app['router']->middleware('admin', Admin::class);
 
         $this->publishes([
-            __DIR__ . 'database/migrations' => database_path('migrations'),
-            __DIR__ . 'database/json_files' => database_path('json_files'),
-        ]);
+            __DIR__ . '/../database/migrations' => database_path('migrations'),
+            __DIR__ . '/../database/json_files' => database_path('json_files')
+        ], 'expense-database');
+
+
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
@@ -49,6 +54,9 @@ class ExpenseServiceProvider extends ServiceProvider
             return new Expense;
         });
 
+        $this->app->bind('payOutType', function (){
+            return new ExpensePayOutType;
+        });
 
     }
 
@@ -69,6 +77,9 @@ class ExpenseServiceProvider extends ServiceProvider
      */
     protected function bootForConsole()
     {
+        $this->commands([
+            ExpenseDependencies::class,
+        ]);
         // Publishing the configuration file.
         /*$this->publishes([
             __DIR__.'/../config/expense.php' => config_path('expense.php'),

@@ -72,7 +72,7 @@ class Application extends BaseApplication implements ApplicationContract, HttpKe
      */
     public function databasePath($path = '')
     {
-        return $this->path().DIRECTORY_SEPARATOR.'database';
+        return $this->basePath.DIRECTORY_SEPARATOR.'database';
     }
 
     /**
